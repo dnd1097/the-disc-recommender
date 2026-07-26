@@ -1,0 +1,214 @@
+# Stakeholder Colors — DISC Personality Recommender
+
+A personal, local-only web app to assess your work relationships through the DISC personality model from *Surrounded by Idiots* by Thomas Erikson. Understand your colleagues' communication styles, get actionable advice on how to work with each of them, and visualize your entire stakeholder landscape.
+
+## Features
+
+- **Self-Assessment** — Take a 24-question assessment to discover your own DISC color (Red, Yellow, Green, or Blue) and unlock personalized pairing advice for every contact
+- **Contact Assessments** — Assess each colleague with observer-based questions; automatically detect primary and secondary colors with confidence scores
+- **Book-Grounded Advice** — Eight comprehensive sections per person (all authored from the original book):
+  - How they see themselves vs. how others perceive them
+  - Dos and don'ts when working with them
+  - Communication & email style guidance
+  - How to give them feedback effectively
+  - What stresses them and how to help
+  - Their conflict and decision-making patterns
+  - Body language tells
+  - Your-color-to-their-color pairing advice
+  - Corporate-level specific guidance (IC through C-Level)
+- **Smart Versioning** — Re-assess contacts yearly; all versions are kept with score deltas, and you'll see a "Refresh due" badge after 12 months
+- **Dashboard** — See your whole stakeholder landscape:
+  - Quadrant map showing task-oriented vs. people-focused and active vs. reserved
+  - Distribution of colors across your contacts
+  - Color mix breakdown by corporate level
+  - AI-generated pattern insights
+- **PDF Export** — Export any assessment as a polished PDF report via your browser's print-to-PDF feature
+- **Backup & Restore** — Export/import JSON backups to keep your data safe
+- **100% Local** — All data stored in your browser's localStorage; no server, no accounts, no cloud sync
+
+## What is DISC?
+
+DISC is a behavioral assessment model based on William Moulton Marston's work. It categorizes people into four primary types:
+
+- **Red (Dominance)** — Direct, results-driven, impatient, competitive
+- **Yellow (Influence)** — Optimistic, persuasive, people-focused, spontaneous
+- **Green (Stability)** — Steady, team-first, conflict-averse, reliable
+- **Blue (Compliance/Analytic)** — Detail-oriented, methodical, skeptical, quality-focused
+
+Most people are a blend of two colors. This app helps you understand that blend and adapt your communication accordingly.
+
+## Quick Start
+
+### Prerequisites
+
+- **Node.js** 18+ ([download here](https://nodejs.org/))
+- **npm** (comes with Node.js)
+- A modern web browser (Chrome, Safari, Firefox, Edge)
+
+### Installation
+
+1. **Clone or download this repository:**
+   ```bash
+   git clone https://github.com/yourusername/the-disc-recommender.git
+   cd the-disc-recommender
+   ```
+
+2. **Install dependencies:**
+   ```bash
+   npm install
+   ```
+
+3. **Start the development server:**
+   ```bash
+   npm run dev
+   ```
+
+4. **Open in your browser:**
+   - The terminal will show a local URL (typically `http://localhost:5199`)
+   - Click it or paste it into your browser
+
+## How to Use
+
+### 1. Start with Yourself
+- Navigate to **My Profile**
+- Click **Assess yourself**
+- Answer 24 quick questions about your own behavior
+- Your color will unlock the "you × them" pairing advice for all your contacts
+
+### 2. Add Colleagues
+- Go to **Contacts** → **Add contact**
+- Enter their name, job title, and corporate level
+- Answer 24 observer-based questions about their behavior
+- Get their DISC profile with actionable advice
+
+### 3. Explore the Dashboard
+- See where you and your contacts plot on the task/relationship and active/reserved axes
+- Understand patterns in your stakeholder distribution
+- Identify which colors you interact with most
+
+### 4. Manage Assessments
+- **Version control** — Click "New 2026 assessment" to re-assess someone and compare scores over time
+- **Export PDF** — Print any report to PDF for sharing or archiving
+- **Refresh tracking** — Assessments older than 12 months get a "Refresh due" badge
+
+### 5. Backup Your Data
+- Click **Export backup** to download a JSON file with all your data
+- Click **Import** to restore from a backup
+
+## Understanding Your Results
+
+### Primary vs. Secondary Colors
+- Your **primary color** is your dominant style
+- Your **secondary color** (if present) is your secondary tendency
+- Most people operate as a two-color blend (e.g., Red/Blue)
+
+### Confidence Scores
+- **Clear** — Large gap between your top two colors; strong profile
+- **Moderate** — Medium spread; some blend between colors
+- **Mixed** — Close scores; flexible across all four colors
+
+### The Advice Sections
+
+Each contact report includes:
+
+1. **Snapshot** — How they see themselves vs. how others experience them
+2. **Adapting to Them** — Dos and don'ts to work effectively with this person
+3. **Communication & Email** — How they prefer to communicate; email style tells
+4. **Feedback** — The right way to give them positive and negative feedback
+5. **Stress** — What triggers stress for this person and how to help them recover
+6. **Conflict & Decisions** — How they fight, how they decide, what persuades them
+7. **Body Language** — Observable tells that reveal their color
+8. **Pairing Advice** — Specific tips for YOU working with THEM (only visible after you complete your own profile)
+9. **Corporate Level Lens** — Adjusted guidance based on their role (IC through C-Level)
+
+## Data Privacy
+
+✅ **All data is local to your computer.** No servers, no cloud sync, no data collection. Your assessments are stored only in your browser's localStorage. You control everything:
+
+- Export your data anytime as JSON
+- Delete anything you want
+- Share only what you choose to share
+
+## Building for Production
+
+To create a production-optimized build:
+
+```bash
+npm run build
+```
+
+This generates an optimized `dist/` folder that you can:
+- Host on any static hosting (Vercel, Netlify, GitHub Pages, etc.)
+- Run locally with `npx serve dist`
+- Share on an internal company server
+
+## Troubleshooting
+
+### "npm command not found"
+→ Node.js is not installed. [Download it here](https://nodejs.org/) and restart your terminal.
+
+### "Port 5199 is already in use"
+→ Another app is using that port. Either close it or Vite will use the next available port. Check the terminal output for the actual URL.
+
+### "My data disappeared"
+→ If you cleared browser cache/cookies, localStorage was wiped. You can restore from a backup JSON file using the **Import** button.
+
+### "The app is slow"
+→ If you have 50+ contacts with multiple versions each, your browser's localStorage is working hard. Try exporting a JSON backup and starting fresh in an incognito window to test.
+
+## Development
+
+### Project Structure
+```
+src/
+  pages/              # Full-page components (Dashboard, ContactList, etc.)
+  components/         # Reusable components (ColorChip, ScoreBars, etc.)
+  data/              # Static data (questions, advice content, colors)
+  lib/               # Business logic (scoring, advice composition)
+  store.tsx          # React context + localStorage persistence
+  types.ts           # TypeScript types
+  styles.css         # Main styles (DISC color palette)
+  print.css          # Print-to-PDF stylesheet
+  main.tsx           # Entry point
+  App.tsx            # Router and layout
+```
+
+### Key Technologies
+- **React 18** — UI framework
+- **React Router** — Client-side routing
+- **TypeScript** — Type safety
+- **Vite** — Build tool (fast, modern)
+- **SVG** — Charts (no external charting library)
+
+### Tech Decisions
+- **No backend** — Keep it simple, fast, and free to host
+- **Rule-based advice** — Crafted from the book, not AI-generated
+- **localStorage** — Good enough for personal use; works offline
+
+## Authorship & Attribution
+
+This app is built on Thomas Erikson's *Surrounded by Idiots* and the DISC behavioral model. The book provides:
+- The four color framework (Red, Yellow, Green, Blue)
+- All advice content (adaptation, feedback, communication, stress, conflict)
+- The philosophical foundation
+
+**Disclaimer:** DISC is a popular behavioral model but lacks robust scientific validation. Use this app as a **lens for reflection** on communication styles, not as psychological diagnosis or truth about a person.
+
+## Contributing
+
+Found a bug? Want to suggest a feature? Feel free to:
+- Open an issue on GitHub
+- Fork and submit a pull request
+- Reach out directly
+
+## License
+
+MIT License — Use freely for personal and commercial purposes.
+
+## Support
+
+Have questions? Check the [GitHub Issues](https://github.com/yourusername/the-disc-recommender/issues) or create a new one.
+
+---
+
+**Ready to understand your stakeholders better?** Run `npm run dev` and start assessing today.

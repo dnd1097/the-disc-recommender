@@ -1,0 +1,63 @@
+/* Print styles: "Export PDF" renders the current page through the browser's
+   print-to-PDF. Nav and controls are hidden; advice cards avoid page breaks. */
+
+.print-only-block {
+  display: none;
+}
+
+@media print {
+  @page {
+    margin: 16mm 14mm;
+  }
+
+  body {
+    background: #fff;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .no-print {
+    display: none !important;
+  }
+
+  .print-only-block {
+    display: block;
+  }
+
+  .shell {
+    max-width: none;
+    padding: 0;
+  }
+
+  .card {
+    box-shadow: none;
+    border: 1px solid #ddd;
+    margin-bottom: 12px;
+    padding: 14px 16px;
+  }
+
+  .avoid-break,
+  .card {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  .grid2 {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  h1 {
+    font-size: 21px;
+  }
+
+  .q-text,
+  .likert,
+  .wizard-nav,
+  .progressbar {
+    display: none;
+  }
+
+  a {
+    text-decoration: none;
+  }
+}
