@@ -95,6 +95,13 @@ export default function ContactDetail() {
                     )}
                   </p>
                   <ScoreBars scores={version.scores} compare={previous.scores} />
+                  {version.questionSetVersion !== previous.questionSetVersion && (
+                    <p className="sub" style={{ marginTop: 10, marginBottom: 0 }}>
+                      ⚠ These two assessments used different question sets (v
+                      {previous.questionSetVersion} → v{version.questionSetVersion}), so the
+                      score changes above are not a like-for-like comparison.
+                    </p>
+                  )}
                 </>
               )}
               {!isLatest && (

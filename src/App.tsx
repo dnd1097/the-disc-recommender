@@ -5,11 +5,11 @@ import ContactDetail from './pages/ContactDetail'
 import AssessmentWizard from './pages/AssessmentWizard'
 import MyProfile from './pages/MyProfile'
 import { DISCLAIMER } from './data/advice'
-import { exportJson, parseImport, useStore } from './store'
+import { APP_VERSION, exportJson, parseImport, useStore } from './store'
 import { useRef } from 'react'
 
 export default function App() {
-  const { state, dispatch } = useStore()
+  const { state, dispatch, notices, dismissNotice, readOnly } = useStore()
   const fileRef = useRef<HTMLInputElement>(null)
 
   function onImportFile(e: React.ChangeEvent<HTMLInputElement>) {
@@ -18,15 +18,22 @@ export default function App() {
     file.text().then((text) => {
       try {
         const imported = parseImport(text)
+        const existing = state.contacts.length + (state.me ? 1 : 0)
+        const warning =
+          existing > 0
+            ? `\n\nThis REPLACES your current data (${existing} record(s)). Export a backup first if you have not already.`
+            : ''
         if (
           confirm(
-            `Import backup with ${imported.contacts.length} contact(s)? This replaces current data.`
+            `Import backup with ${imported.contacts.length} contact(s)${
+              imported.me ? ' and your own profile' : ''
+            }?${warning}`
           )
         ) {
           dispatch({ type: 'IMPORT_STATE', state: imported })
         }
-      } catch {
-        alert('That file is not a valid backup.')
+      } catch (err) {
+        alert(err instanceof Error ? err.message : 'That file is not a valid backup.')
       }
       e.target.value = ''
     })
@@ -69,6 +76,25 @@ export default function App() {
         />
       </nav>
 
+      {readOnly && (
+        <div className="notice notice-warn no-print">
+          <b>Read-only.</b> Nothing you do will be saved — see the message below.
+        </div>
+      )}
+
+      {notices.map((n, i) => (
+        <div key={i} className={`notice notice-${n.level} no-print`}>
+          <span>{n.message}</span>
+          <button
+            className="notice-dismiss"
+            onClick={() => dismissNotice(i)}
+            aria-label="Dismiss"
+          >
+            ✕
+          </button>
+        </div>
+      ))}
+
       <Routes>
         <Route path="/" element={<Dashboard />} />
         <Route path="/contacts" element={<ContactList />} />
@@ -79,7 +105,14 @@ export default function App() {
         <Route path="/me" element={<MyProfile />} />
       </Routes>
 
-      <div className="footer-note no-print">{DISCLAIMER}</div>
+      <div className="footer-note no-print">
+        {DISCLAIMER}
+        <br />
+        <span style={{ opacity: 0.7 }}>
+          Version {APP_VERSION} · data is stored only in this browser —{' '}
+          <b>export a backup regularly</b>.
+        </span>
+      </div>
     </div>
   )
 }

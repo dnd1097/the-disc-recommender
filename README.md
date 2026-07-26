@@ -131,6 +131,44 @@ Each contact report includes:
 - Delete anything you want
 - Share only what you choose to share
 
+## Your Data Survives App Updates
+
+Assessments take real effort, so the app is built never to throw them away when the code changes.
+
+**What happens when you update the app.** Saved data carries a schema version. On startup the app compares it with the version the current build expects:
+
+| Situation | What the app does |
+|---|---|
+| Same version | Loads normally |
+| Older version | Snapshots your data, runs the migration chain, loads it upgraded, and tells you what changed |
+| Newer version (e.g. an old cached build) | Loads **read-only** and refuses to write, so an older build cannot clobber newer data |
+| Unreadable or corrupt | Copies the raw data aside under its own key and starts empty — nothing is deleted |
+
+**Guarantees:**
+
+- Data is never silently discarded. Anything the app cannot read is preserved under a timestamped key (`disc-recommender-v1-corrupt-…`) and reported on screen.
+- A pre-upgrade snapshot is kept before every migration (last 3 retained).
+- Scores are frozen at capture time and never recomputed, so editing the questions later cannot rewrite your history.
+- Each assessment records the question-set version that produced it. If you compare two assessments made under different question sets, the app flags that the comparison is not like-for-like.
+- Backup files migrate on import, so a backup exported today will still import into a much later version of the app.
+- If a save fails (storage full, private browsing), you get an explicit warning instead of silent data loss.
+
+**⚠️ The one risk the app cannot protect you from: the browser deleting its own storage.** This happens if you clear site data, use private browsing, or — notably on **iOS Safari** — leave a site unused for about 7 days without adding it to your Home Screen. Nothing local can defend against that.
+
+> **Export a backup periodically.** It is one click, and it is the only copy that outlives the browser. Keep it somewhere you actually back up.
+
+### Adding a migration (for developers)
+
+When you change the persisted shape:
+
+1. Add a step to `MIGRATIONS` in [`src/lib/migrations.ts`](src/lib/migrations.ts) with `from`, `to`, a plain-English `description`, and a pure `migrate` function.
+2. Bump `CURRENT_SCHEMA` to the new number.
+3. Update the types in [`src/types.ts`](src/types.ts).
+
+Migrations run in sequence, so data from any older version upgrades cleanly in one pass. Never delete an old migration — it is the path a years-old backup still depends on.
+
+If you change the questions in a way that affects scoring (adding, removing, or re-pointing a question to a different color), bump `QUESTION_SET_VERSION` in [`src/data/questions.ts`](src/data/questions.ts). Never reuse an existing question id for a different question: stored answers are keyed by id, and reuse would silently misattribute them.
+
 ## Building for Production
 
 To create a production-optimized build:

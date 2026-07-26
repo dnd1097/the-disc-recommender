@@ -22,6 +22,13 @@ export interface AssessmentVersion {
   primary: Color
   secondary: Color | null
   confidence: Confidence
+  /**
+   * Which question set produced this assessment. Scores are frozen at capture
+   * time and never recomputed, so changing the questions later cannot alter
+   * historical results — this records when two assessments are not strictly
+   * comparable.
+   */
+  questionSetVersion: number
 }
 
 export interface Contact {
@@ -34,7 +41,8 @@ export interface Contact {
 }
 
 export interface AppState {
-  schemaVersion: 1
+  /** Persisted-shape version. See src/lib/migrations.ts for the upgrade chain. */
+  schemaVersion: number
   me: Contact | null
   contacts: Contact[]
 }

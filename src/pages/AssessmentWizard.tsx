@@ -1,6 +1,6 @@
 import { useMemo, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
-import { LIKERT_LABELS, orderedQuestions } from '../data/questions'
+import { LIKERT_LABELS, QUESTION_SET_VERSION, orderedQuestions } from '../data/questions'
 import { scoreAnswers } from '../lib/scoring'
 import { makeContact, newId, useStore } from '../store'
 import type { AssessmentVersion, Level } from '../types'
@@ -55,6 +55,7 @@ export default function AssessmentWizard({ mode }: { mode: Mode }) {
       createdAt: new Date().toISOString(),
       year: new Date().getFullYear(),
       answers: finalAnswers,
+      questionSetVersion: QUESTION_SET_VERSION,
       ...result,
     }
     if (isSelf) {

@@ -554,6 +554,57 @@ table.contacts tr.rowlink:hover {
   padding-top: 14px;
 }
 
+/* Notices (migration, storage failures, read-only) */
+.notice {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  border-radius: var(--radius);
+  padding: 12px 16px;
+  margin-bottom: 14px;
+  font-size: 14px;
+  border: 1.5px solid;
+  line-height: 1.5;
+}
+
+.notice-info {
+  background: var(--blue-soft);
+  border-color: var(--blue);
+  color: #1e3f63;
+}
+
+.notice-warn {
+  background: var(--yellow-soft);
+  border-color: var(--yellow);
+  color: #6b5200;
+}
+
+.notice-error {
+  background: var(--red-soft);
+  border-color: var(--red);
+  color: #8f2622;
+}
+
+.notice span {
+  flex: 1;
+}
+
+.notice-dismiss {
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-size: 15px;
+  line-height: 1;
+  color: inherit;
+  opacity: 0.6;
+  padding: 2px 4px;
+  font-family: inherit;
+}
+
+.notice-dismiss:hover {
+  opacity: 1;
+}
+
 .empty {
   text-align: center;
   padding: 48px 20px;

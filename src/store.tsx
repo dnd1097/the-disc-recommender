@@ -1,9 +1,19 @@
-import React, { createContext, useContext, useEffect, useReducer } from 'react'
+import React, { createContext, useContext, useEffect, useReducer, useState } from 'react'
 import type { AppState, AssessmentVersion, Contact, Level } from './types'
+import {
+  APP_VERSION,
+  EMPTY_STATE,
+  buildBackup,
+  loadPersisted,
+  parseBackup,
+  savePersisted,
+  type Notice,
+} from './lib/migrations'
 
-const STORAGE_KEY = 'disc-recommender-v1'
+export { APP_VERSION }
+export type { Notice }
 
-const emptyState: AppState = { schemaVersion: 1, me: null, contacts: [] }
+const emptyState: AppState = EMPTY_STATE
 
 export function newId(): string {
   return Math.random().toString(36).slice(2, 10) + Date.now().toString(36)
@@ -59,35 +69,51 @@ function reducer(state: AppState, action: Action): AppState {
   }
 }
 
-function loadState(): AppState {
-  try {
-    const raw = localStorage.getItem(STORAGE_KEY)
-    if (!raw) return emptyState
-    const parsed = JSON.parse(raw) as AppState
-    if (parsed.schemaVersion !== 1) return emptyState
-    return parsed
-  } catch {
-    return emptyState
-  }
+// Read storage once, before React mounts, so migration runs exactly one time
+// even under StrictMode's double-invoked effects.
+const initial = loadPersisted()
+
+interface StoreValue {
+  state: AppState
+  dispatch: React.Dispatch<Action>
+  notices: Notice[]
+  dismissNotice: (index: number) => void
+  /** True when stored data came from a newer build; the app is read-only. */
+  readOnly: boolean
 }
 
-const StoreContext = createContext<{ state: AppState; dispatch: React.Dispatch<Action> }>({
+const StoreContext = createContext<StoreValue>({
   state: emptyState,
   dispatch: () => {},
+  notices: [],
+  dismissNotice: () => {},
+  readOnly: false,
 })
 
 export function StoreProvider({ children }: { children: React.ReactNode }) {
-  const [state, dispatch] = useReducer(reducer, undefined, loadState)
+  const [state, dispatch] = useReducer(reducer, initial.state)
+  const [notices, setNotices] = useState<Notice[]>(initial.notices)
+  const readOnly = initial.blockWrites
 
   useEffect(() => {
-    try {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(state))
-    } catch (e) {
-      console.error('Failed to save state', e)
+    // Never write over data this build does not understand.
+    if (readOnly) return
+    const failure = savePersisted(state)
+    if (failure) {
+      setNotices((prev) =>
+        prev.some((n) => n.message === failure.message) ? prev : [...prev, failure]
+      )
     }
-  }, [state])
+  }, [state, readOnly])
 
-  return <StoreContext.Provider value={{ state, dispatch }}>{children}</StoreContext.Provider>
+  const dismissNotice = (index: number) =>
+    setNotices((prev) => prev.filter((_, i) => i !== index))
+
+  return (
+    <StoreContext.Provider value={{ state, dispatch, notices, dismissNotice, readOnly }}>
+      {children}
+    </StoreContext.Provider>
+  )
 }
 
 export function useStore() {
@@ -99,7 +125,9 @@ export function makeContact(name: string, title: string, level: Level): Contact 
 }
 
 export function exportJson(state: AppState) {
-  const blob = new Blob([JSON.stringify(state, null, 2)], { type: 'application/json' })
+  const blob = new Blob([JSON.stringify(buildBackup(state), null, 2)], {
+    type: 'application/json',
+  })
   const url = URL.createObjectURL(blob)
   const a = document.createElement('a')
   a.href = url
@@ -108,10 +136,7 @@ export function exportJson(state: AppState) {
   URL.revokeObjectURL(url)
 }
 
+/** Parse a backup file, migrating it forward from any older schema version. */
 export function parseImport(text: string): AppState {
-  const parsed = JSON.parse(text)
-  if (parsed?.schemaVersion !== 1 || !Array.isArray(parsed?.contacts)) {
-    throw new Error('Not a valid backup file')
-  }
-  return parsed as AppState
+  return parseBackup(text).state
 }

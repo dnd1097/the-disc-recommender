@@ -1,5 +1,16 @@
 import type { Color } from '../types'
 
+/**
+ * Bump when the question set changes in a way that affects scoring — adding,
+ * removing, or re-pointing a question to a different color. Pure rewording of
+ * an existing question keeps the same version. Stored assessments record the
+ * version that produced them so historical results stay interpretable.
+ *
+ * Never reuse or repurpose an existing question id: old assessments keep their
+ * answers keyed by id, and a repurposed id would silently misattribute them.
+ */
+export const QUESTION_SET_VERSION = 1
+
 export interface Question {
   id: string
   color: Color
