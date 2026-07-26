@@ -64,7 +64,7 @@ export const ADVICE: Record<Color, ColorAdvice> = {
         'Their emails are abrupt and command-like ("Meeting tomorrow at 11. BE PUNCTUAL!") — no greeting, no social padding. Answer instantly and just as briefly.',
     },
     feedback: [
-      'Skip the gift wrap entirely — no sandwich method. Deliver criticism plainly and directly.',
+      'Drop the softening preamble — no sandwich method. Deliver the criticism plainly and directly.',
       'Bring very concrete examples; generalities will be dismissed as anecdotes about other people’s incompetence.',
       'Frame impact in terms of results they care about ("an exhausted rep sells nothing on Monday"), not feelings.',
       'Expect a counterattack — they may accuse you of everything under the sun to regain the upper hand. Don’t take the bait; wait out the storm and continue to the next point.',
@@ -89,7 +89,7 @@ export const ADVICE: Record<Color, ColorAdvice> = {
     },
     conflict: {
       temperament:
-        'The shot glass: fills instantly, empties instantly. Explodes over small things, then moves on and forgets the episode — while everyone else is still shaken. They don’t consider themselves angry; shouting is just communication.',
+        'Flash fire: ignites over something minor, burns hot for a minute, and is out before anyone else has recovered. They treat the matter as closed and move on — they don’t think of themselves as angry, and raised volume is simply how they talk.',
       decisions: [
         'Decides fast with incomplete information; comfortable with risk.',
         'Focused on the present and the future — historical caveats bore them.',
@@ -129,7 +129,7 @@ export const ADVICE: Record<Color, ColorAdvice> = {
         'Create a warm, friendly atmosphere — smile, laugh at their jokes, keep it light. A Yellow in good spirits will actually listen to you.',
         'Start with the big picture and the vision; strip out as much detail as possible.',
         'Appeal to feelings: ask "how does this feel?" rather than presenting spreadsheets.',
-        'Frame things as new, state-of-the-art, never-done-before — novelty is their fuel.',
+        'Frame things as new, first-of-its-kind, not-yet-tried — novelty is their fuel.',
         'Be open and personal in return: share stories about yourself; show curiosity about them.',
         'Pin down agreements concretely: get them to say exactly what they will do, and get it written in their calendar.',
       ],
@@ -158,7 +158,7 @@ export const ADVICE: Record<Color, ColorAdvice> = {
         'Their emails are spontaneous and chatty — stories, jokes, tangents, a forgotten attachment in a follow-up message. Reply cordially and acknowledge the personal content.',
     },
     feedback: [
-      'Prepare a written agenda and stick to it — they are skilled at smokescreens and will lure you off track.',
+      'Prepare a written agenda and stick to it — they are skilled at redirecting a conversation and will steer you off your point.',
       'Give very concrete examples ("you spoke for over an hour of the two-hour dinner — I timed it").',
       'Repeatedly affirm that you like them and it is only the behavior that is the problem. Yellows take criticism deeply personally.',
       'Expect the martyr complex: "nobody likes me." Massage the ego as much as you can bear, and put words in their mouth if needed.',
@@ -183,7 +183,7 @@ export const ADVICE: Record<Color, ColorAdvice> = {
     },
     conflict: {
       temperament:
-        'The drinking glass: fills gradually and visibly — eyes intensify, gestures grow, voice rises — before it spills. Afterward they feel guilty and over-compensate with kindness. Their bad memory means grudges evaporate fast.',
+        'A rising siren: the build-up is audible and visible — sharper eyes, bigger gestures, climbing voice — so you get real warning before it peaks. Guilt follows quickly, and they over-correct with warmth next time you meet. Their short memory means the grudge is gone before you are.',
       decisions: [
         'Decides by gut feel; facts are welcome as long as it "feels right".',
         'High tolerance for uncertainty and risk — especially for anything new.',
@@ -278,7 +278,7 @@ export const ADVICE: Record<Color, ColorAdvice> = {
     },
     conflict: {
       temperament:
-        'The fifty-gallon barrel: absorbs perceived injustices silently for months or years — then one spark releases everything at once, going back to 1997. Beware the fury of a patient man. Help by inviting their real opinion early, so the barrel never fills.',
+        'A hairline crack under load: nothing shows for months or years while they absorb one perceived slight after another without mentioning any of it. Then a small trigger brings the whole structure down at once, itemised back to their first month in the job. Invite their real objections early and the load never accumulates.',
       decisions: [
         'Prefers not to decide at all; once they decided not to make decisions.',
         'Needs to know how the plan works before moving; asks "how?"',
@@ -316,7 +316,7 @@ export const ADVICE: Record<Color, ColorAdvice> = {
     adapting: {
       dos: [
         'Prepare meticulously — then go through it all one more time. They judge you entirely on the quality of your work.',
-        'Be exact: "nine dollars and seventy-three cents", not "about ten dollars". Precise beats favorable.',
+        'Be exact: quote the real figure to the last decimal rather than a convenient round number. They would rather have the precise answer than a flattering one.',
         'Stick to the task; keep the meeting factual and focused. The personal layer comes much later, on their initiative.',
         'If you don’t know the answer, say so plainly and come back with it — one discovered white lie and you are done.',
         'Keep proposals realistic; skip inspirational speeches and wild goals entirely.',
@@ -348,9 +348,9 @@ export const ADVICE: Record<Color, ColorAdvice> = {
     },
     feedback: [
       'Before anything else: make sure you know what you are talking about. They know exactly what they did, and they have better command of the details than you.',
-      'Bring specific, detailed, documented examples — preferably in writing, with the numbers double-checked by someone else ("the project ran 16.5 hours over; at $250/hour that is $4,125 of unbillable time").',
+      'Bring specific, documented examples — preferably in writing, with the arithmetic checked by someone else ("the last release slipped three sprints; at our run rate that is roughly two engineer-months we cannot bill").',
       'Skip the warm-up and never use the sandwich method — burying the message in relational praise just makes it incomprehensible to them.',
-      'Expect counterquestions at the molecular level ("who said that?", "where is the supporting document?"). Decide in advance how deep you will go — but never retreat to "that’s just how it is".',
+      'Expect forensic counterquestions ("who said that?", "where is the supporting document?"). Decide in advance how deep you will go — but never retreat to "that’s just how it is".',
       'Invite their suggestions for improvement; use words like quality, evaluate, analyze.',
       'Have them repeat what was agreed — they will, verbatim — then follow up to confirm they actually accepted it rather than merely recited it.',
     ],
@@ -373,7 +373,7 @@ export const ADVICE: Record<Color, ColorAdvice> = {
     },
     conflict: {
       temperament:
-        'Controlled and self-contained: anger shows as sharpened criticism and withdrawal rather than volume. They will remember precisely what was said, by whom, and when — and can make your objections look nonsensical at the logical level.',
+        'Cold rather than hot: displeasure surfaces as sharper criticism and withdrawal, never as volume. They retain exactly what was said, by whom, and when — and will out-argue you on process and evidence if your own case is loose.',
       decisions: [
         'The path to the decision matters more than the decision; risk of full deadlock ("on the one hand… on the other hand…").',
         'Asks "why?" — needs the rationale, the data, and the process.',
@@ -439,7 +439,7 @@ export const PAIRINGS: Record<string, PairingAdvice> = {
     bridges: [
       'Slow down deliberately: explain the plan step by step and give them time to digest changes.',
       'Ask for their view privately and wait for the answer — their silence is not agreement.',
-      'Never blow up at them; one eruption costs months of trust and fills their barrel.',
+      'Never blow up at them; one eruption costs months of trust and adds to a load they never mention.',
     ],
   },
   'RED-BLUE': {
@@ -491,11 +491,11 @@ export const PAIRINGS: Record<string, PairingAdvice> = {
   // You GREEN
   'GREEN-RED': {
     friction:
-      'Their volume, pace, and bluntness can feel like a personal attack — it almost never is. The risk is that you go quiet, say yes when you mean no, and fill your barrel.',
+      'Their volume, pace, and bluntness can feel like a personal attack — it almost never is. The risk is that you go quiet, say yes when you mean no, and quietly accumulate resentment.',
     bridges: [
-      'Say your opinion plainly and early — Reds genuinely respect pushback and despise doormats.',
+      'Say your opinion plainly and early — Reds genuinely respect pushback, and lose respect fast for anyone who folds.',
       'Keep answers short and concrete; skip the context they don’t want.',
-      'When they erupt, remember the shot glass: it empties as fast as it fills, and they have already moved on.',
+      'When they erupt, remember it burns out as fast as it ignites — they have already moved on while you are still processing it.',
     ],
   },
   'GREEN-YELLOW': {
