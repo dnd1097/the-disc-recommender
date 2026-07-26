@@ -2,6 +2,8 @@
 
 A personal, local-only web app to assess your work relationships through the DISC personality model from *Surrounded by Idiots* by Thomas Erikson. Understand your colleagues' communication styles, get actionable advice on how to work with each of them, and visualize your entire stakeholder landscape.
 
+> ⚠️ **Experimental personal project, provided as-is.** This is a self-reflection tool built on a behavioral model that is popular but **not scientifically validated**. It is not a psychological assessment and must not be used for hiring, promotion, performance, or any other employment decision. See [Disclaimers](#disclaimers) before using it.
+
 ## Features
 
 - **Self-Assessment** — Take a 24-question assessment to discover your own DISC color (Red, Yellow, Green, or Blue) and unlock personalized pairing advice for every contact
@@ -185,14 +187,28 @@ src/
 - **Rule-based advice** — Crafted from the book, not AI-generated
 - **localStorage** — Good enough for personal use; works offline
 
-## Authorship & Attribution
+## Attribution
 
-This app is built on Thomas Erikson's *Surrounded by Idiots* and the DISC behavioral model. The book provides:
-- The four color framework (Red, Yellow, Green, Blue)
-- All advice content (adaptation, feedback, communication, stress, conflict)
-- The philosophical foundation
+This app applies the DISC behavioral model as popularized in Thomas Erikson's *Surrounded by Idiots*. The book informed:
+- The four-color framing (Red, Yellow, Green, Blue) and the two underlying axes
+- The topics each report covers — adaptation, feedback, communication, stress, conflict, body language
+- The idea that most people are a two-color blend
 
-**Disclaimer:** DISC is a popular behavioral model but lacks robust scientific validation. Use this app as a **lens for reflection** on communication styles, not as psychological diagnosis or truth about a person.
+All text in this app is original writing. No passages, examples, questions, or illustrations from the book are reproduced here. DISC itself originates with William Moulton Marston's 1928 work and is not proprietary to any one author.
+
+This project is **independent and unaffiliated**. It is not endorsed by, sponsored by, or connected with Thomas Erikson, his publishers, John Wiley & Sons (owner of the *Everything DiSC*® trademark), TTI Success Insights, or any other DISC assessment vendor. "DiSC" is a registered trademark of its respective owner and is used here only descriptively.
+
+## Disclaimers
+
+**No warranty.** This software is provided "as is", without warranty of any kind. The author accepts no liability for any claim, damages, or other liability arising from its use. See the [LICENSE](LICENSE) for the full terms. Use it at your own risk.
+
+**Not a scientific or psychological instrument.** DISC is widely used in business but lacks robust peer-reviewed validation, and its four-color popularization has been criticized by psychologists. The results this app produces are structured guesses derived from your own subjective answers — not measurements, diagnoses, or facts about anyone. Treat every report as a prompt for reflection, nothing more.
+
+**Not for employment decisions.** Do not use this app — or anything it outputs — to inform hiring, firing, promotion, compensation, team assignment, performance review, or any other employment decision. Using unvalidated personality assessments this way is professionally inappropriate and may carry legal exposure under employment and anti-discrimination law in many jurisdictions.
+
+**You are responsible for how you use it.** The assessments describe real people who have not consented to being assessed and cannot see or correct what you record. Keep your data private, avoid sharing reports about someone without their knowledge, and be aware that notes about identifiable individuals may fall under data protection laws such as GDPR depending on your jurisdiction and how you use them.
+
+**Not professional advice.** Nothing here constitutes psychological, medical, HR, or legal advice.
 
 ## Contributing
 
@@ -203,7 +219,9 @@ Found a bug? Want to suggest a feature? Feel free to:
 
 ## License
 
-MIT License — Use freely for personal and commercial purposes.
+Released under the [MIT License](LICENSE) — free to use, copy, modify, and distribute for personal or commercial purposes, provided the copyright notice and license text are retained.
+
+The MIT License includes an explicit disclaimer of warranty and limitation of liability: the software is provided "AS IS", and the author is not liable for any claim or damages arising from its use.
 
 ## Support
 

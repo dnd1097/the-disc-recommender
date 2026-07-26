@@ -604,4 +604,4 @@ export const LEVEL_LENS: Record<LevelBucket, { title: string; points: string[] }
 }
 
 export const DISCLAIMER =
-  'Framework from "Surrounded by Idiots" (Thomas Erikson), based on the DISC/DISA behavioral model. This is a lens for reflection on communication styles — not a scientifically validated instrument, and never the full truth about a person.'
+  'Framework based on the DISC behavioral model as popularized in "Surrounded by Idiots" (Thomas Erikson); this project is independent and unaffiliated. DISC is not a scientifically validated instrument. This is a lens for reflection on communication styles — never the full truth about a person, and not to be used for hiring, performance, or any other employment decision.'
