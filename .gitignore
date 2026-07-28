@@ -1,11 +1,17 @@
 # Dependencies
 node_modules/
-package-lock.json
+
+# NOTE: package-lock.json is intentionally COMMITTED so that everyone who
+# installs this project gets the exact same dependency versions. Do not ignore it.
 yarn.lock
+pnpm-lock.yaml
 
 # Build output
 dist/
 build/
+
+# TypeScript incremental build cache (machine-specific, must not be shared)
+*.tsbuildinfo
 
 # IDE
 .vscode/

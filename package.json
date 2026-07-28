@@ -2,11 +2,21 @@
   "name": "the-disc-recommender",
   "private": true,
   "version": "1.1.0",
+  "description": "Local-only DISC personality assessment and stakeholder advice app",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dnd1097/the-disc-recommender.git"
+  },
   "type": "module",
+  "engines": {
+    "node": ">=18"
+  },
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "start": "vite"
   },
   "dependencies": {
     "react": "^18.3.1",

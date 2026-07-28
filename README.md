@@ -49,25 +49,44 @@ Most people are a blend of two colors. This app helps you understand that blend 
 
 ### Installation
 
-1. **Clone or download this repository:**
+Copy and paste this whole block into your terminal:
+
+```bash
+git clone https://github.com/dnd1097/the-disc-recommender.git && cd the-disc-recommender && npm install && npm run dev
+```
+
+Then open **http://localhost:5199** in your browser. That's it.
+
+<details>
+<summary>Prefer to run it step by step?</summary>
+
+1. **Clone the repository:**
    ```bash
-   git clone https://github.com/yourusername/the-disc-recommender.git
+   git clone https://github.com/dnd1097/the-disc-recommender.git
+   ```
+
+2. **Move into the project folder** — this step matters; `npm install` fails if you skip it:
+   ```bash
    cd the-disc-recommender
    ```
 
-2. **Install dependencies:**
+3. **Install dependencies:**
    ```bash
    npm install
    ```
 
-3. **Start the development server:**
+4. **Start the app:**
    ```bash
    npm run dev
    ```
 
-4. **Open in your browser:**
-   - The terminal will show a local URL (typically `http://localhost:5199`)
-   - Click it or paste it into your browser
+5. **Open in your browser:** the terminal prints the URL, normally `http://localhost:5199`.
+
+</details>
+
+**No git?** Download the ZIP from the [repository page](https://github.com/dnd1097/the-disc-recommender) (green **Code** button → **Download ZIP**), unzip it, then `cd` into the unzipped folder and run `npm install && npm run dev`.
+
+To stop the app, press `Ctrl+C` in the terminal. To start it again later, `cd` back into the folder and run `npm run dev`.
 
 ## How to Use
 
@@ -184,8 +203,23 @@ This generates an optimized `dist/` folder that you can:
 
 ## Troubleshooting
 
+### "Could not read package.json" / `ENOENT` when running `npm install`
+→ You are running the command from the wrong folder. `npm install` must run **inside** the project folder. Fix it with:
+
+```bash
+cd the-disc-recommender && npm install
+```
+
+If that says "no such file or directory", the clone never completed — re-run the one-line command in [Quick Start](#installation). Run `pwd` to see where you currently are and `ls` to confirm you can see `package.json`.
+
+### "Repository not found" when cloning
+→ Check the URL is exactly `https://github.com/dnd1097/the-disc-recommender.git`. If the repository is private, sign in to GitHub first or download the ZIP instead.
+
 ### "npm command not found"
 → Node.js is not installed. [Download it here](https://nodejs.org/) and restart your terminal.
+
+### "Unsupported engine" or syntax errors during install
+→ Your Node.js is too old. This project needs **Node 18 or newer**. Check with `node -v` and upgrade from [nodejs.org](https://nodejs.org/) if needed.
 
 ### "Port 5199 is already in use"
 → Another app is using that port. Either close it or Vite will use the next available port. Check the terminal output for the actual URL.
@@ -263,7 +297,7 @@ The MIT License includes an explicit disclaimer of warranty and limitation of li
 
 ## Support
 
-Have questions? Check the [GitHub Issues](https://github.com/yourusername/the-disc-recommender/issues) or create a new one.
+Have questions? Check the [GitHub Issues](https://github.com/dnd1097/the-disc-recommender/issues) or create a new one.
 
 ---
 
